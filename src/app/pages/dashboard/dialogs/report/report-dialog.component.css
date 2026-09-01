@@ -1,0 +1,242 @@
+.dialog-container {
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  min-width: 600px;
+  max-width: 100%;
+  max-height: 85vh;
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+}
+
+.header-icon {
+  color: #6a0dad;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.dialog-header h2 {
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.report-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  padding-top: 1rem;
+  max-height: 70vh;
+}
+
+.report-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.report-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.report-body::-webkit-scrollbar-thumb {
+  background: rgba(106, 13, 173, 0.3);
+  border-radius: 10px;
+}
+
+.report-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(106, 13, 173, 0.5);
+}
+
+.form-field {
+  margin-bottom: 0.8rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-outline {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  padding: 0 0.75rem !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.6rem 0 !important;
+}
+
+::ng-deep .mat-icon.mat-prefix {
+  color: #6a0dad;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+::ng-deep .mat-input-element:read-only {
+  color: #333 !important;
+  font-weight: 500 !important;
+}
+
+.risk-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.risk-low {
+  background: rgba(76, 175, 80, 0.15);
+  border-left: 4px solid #4caf50;
+}
+
+.risk-medium {
+  background: rgba(255, 152, 0, 0.15);
+  border-left: 4px solid #ff9800;
+}
+
+.risk-high {
+  background: rgba(244, 67, 54, 0.15);
+  border-left: 4px solid #f44336;
+}
+
+.risk-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.risk-label {
+  color: #555;
+  font-weight: 500;
+}
+
+.risk-value {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-left: 4px;
+}
+
+.risk-low .risk-value {
+  color: #4caf50;
+}
+
+.risk-medium .risk-value {
+  color: #ff9800;
+}
+
+.risk-high .risk-value {
+  color: #f44336;
+}
+
+.report-field {
+  margin-bottom: 0.8rem;
+}
+
+.report-textarea {
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif !important;
+  font-size: 0.92rem !important;
+  line-height: 1.6 !important;
+  color: #333 !important;
+}
+
+::ng-deep .report-textarea textarea {
+  min-height: 60px !important;
+  max-height: 120px !important;
+  resize: vertical !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 8px !important;
+}
+
+.error-field ::ng-deep .mat-form-field-outline {
+  border-color: #f44336 !important;
+}
+
+.error-field ::ng-deep .mat-form-field-outline-thick {
+  border-color: #f44336 !important;
+}
+
+::ng-deep .error-field .mat-icon.mat-prefix {
+  color: #f44336 !important;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.close-button {
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  border-radius: 50px !important;
+  padding: 0 1.8rem !important;
+  height: 44px !important;
+  background: #f5f5f5 !important;
+  color: #555 !important;
+  border: 1px solid #ddd !important;
+  transition: all 0.3s ease !important;
+}
+
+.close-button:hover {
+  background: #e8e8e8 !important;
+  border-color: #bbb !important;
+}
+
+.close-button mat-icon {
+  margin-right: 6px;
+}
+
+@media (max-width: 700px) {
+  .dialog-container {
+    min-width: unset;
+    padding: 0.5rem;
+    min-width: 90vw !important;
+  }
+
+  .dialog-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .report-body {
+    max-height: 60vh;
+  }
+
+  .risk-section {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .dialog-actions {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .close-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

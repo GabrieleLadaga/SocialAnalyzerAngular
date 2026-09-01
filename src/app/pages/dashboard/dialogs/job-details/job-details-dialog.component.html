@@ -1,0 +1,55 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <mat-icon class="header-icon">pending</mat-icon>
+    <h2>Richiesta #{{ job.jobID }} in attesa di essere processata</h2>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>URL del profilo</mat-label>
+      <input
+        matInput
+        [value]="job.profileURL"
+        readonly
+        placeholder="URL non disponibile"
+      />
+      <mat-icon matPrefix>link</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Stato</mat-label>
+      <input
+        matInput
+        [value]="getStatusLabel(job.status)"
+        readonly
+        placeholder="Stato non disponibile"
+      />
+      <mat-icon matPrefix>{{ getStatusIcon(job.status) }}</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field" *ngIf="job.createdAt">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Data di creazione</mat-label>
+      <input
+        matInput
+        [value]="job.createdAt | date:'dd/MM/yyyy HH:mm'"
+        readonly
+      />
+      <mat-icon matPrefix>calendar_today</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="dialog-actions">
+    <button
+      mat-raised-button
+      class="close-button"
+      (click)="close()"
+    >
+      <mat-icon>close</mat-icon>
+      Chiudi
+    </button>
+  </div>
+</div>

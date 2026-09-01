@@ -1,0 +1,378 @@
+.dashboard-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6a0dad, #e91e8c, #ff7f00);
+  background-attachment: fixed;
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-placeholder {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}
+
+.logo-icon {
+  font-size: 28px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.dashboard-header h1 {
+  color: #ffffff;
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.username {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 1rem;
+  padding: 0.3rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+}
+
+.header-right mat-icon {
+  color: #ffffff;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 1.5rem 2rem 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.columns-container {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  height: calc(100vh - 160px);
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.column-icon {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.column-header h2 {
+  color: #ffffff;
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  min-width: 24px;
+  text-align: center;
+}
+
+.column-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.column-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.column-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.column-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+.column-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty-state mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.job-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.job-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.job-card.pending {
+  border-left-color: #ff9800;
+}
+
+.job-card.completed {
+  border-left-color: #4caf50;
+}
+
+.job-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.status-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.job-url {
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.job-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 0.75rem;
+}
+
+.job-date {
+  color: #666;
+}
+
+.job-card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.click-hint {
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif;
+  font-size: 0.65rem;
+  color: #999;
+  font-style: italic;
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.fab-button {
+  background: linear-gradient(135deg, #6a0dad, #e91e8c) !important;
+  color: #ffffff !important;
+  border-radius: 50px !important;
+  padding: 0 18px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  box-shadow: 0 6px 25px rgba(106, 13, 173, 0.5) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  font-family: 'Bookman Old Style', 'Bookman', 'Old Style', serif !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
+  overflow: hidden !important;
+}
+
+.fab-button mat-icon {
+  margin-right: 0 !important;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  transition: margin-right 0.3s ease;
+}
+
+.fab-button .fab-text {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  font-size: 0px;
+}
+
+.fab-button:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 35px rgba(106, 13, 173, 0.6) !important;
+  padding: 0 24px !important;
+}
+
+.fab-button:hover mat-icon {
+  margin-right: 8px !important;
+}
+
+.fab-button:hover .fab-text {
+  max-width: 200px;
+  opacity: 1;
+  font-size: 1rem;
+  margin-right: 4px;
+}
+
+@media (max-width: 900px) {
+  .columns-container {
+    flex-direction: column;
+    height: auto;
+    gap: 1rem;
+  }
+
+  .column {
+    min-height: 300px;
+  }
+
+  .column-content {
+    max-height: 300px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .dashboard-main {
+    padding: 1rem;
+  }
+
+  .fab-button {
+    height: 48px !important;
+    min-width: 48px !important;
+    padding: 0 14px !important;
+  }
+
+  .fab-button mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .fab-button:hover {
+    padding: 0 18px !important;
+  }
+
+  .fab-button:hover .fab-text {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .username {
+    font-size: 0.85rem;
+  }
+
+  .job-url {
+    font-size: 0.75rem;
+  }
+}

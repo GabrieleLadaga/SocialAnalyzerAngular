@@ -1,0 +1,82 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <mat-icon class="header-icon">add_circle</mat-icon>
+    <h2>Avvia nuova richiesta</h2>
+  </div>
+
+  <p class="dialog-description">
+    Inserisci l'URL del profilo social che desideri analizzare.
+    Il sistema raccoglierà i dati pubblici e genererà un report dettagliato.
+  </p>
+
+  <div class="platforms-section">
+    <span class="platforms-label">Piattaforme supportate:</span>
+    <div class="platforms-icons">
+      <div *ngFor="let platform of supportedPlatforms" class="platform-item">
+        <mat-icon
+          class="platform-icon"
+          [style.color]="platform.color"
+          [matTooltip]="platform.name"
+          matTooltipPosition="above"
+        >
+          {{ platform.icon }}
+        </mat-icon>
+        <span class="platform-name">{{ platform.name }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>URL del profilo</mat-label>
+      <input
+        matInput
+        type="url"
+        [placeholder]="getPlaceholder(profileURL)"
+        [(ngModel)]="profileURL"
+        name="profileURL"
+        required
+        #urlInput="ngModel"
+        (input)="errorMessage = ''"
+      />
+      <mat-icon matPrefix>link</mat-icon>
+      <mat-error *ngIf="urlInput.invalid && urlInput.touched">
+        Inserisci un URL valido
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="profileURL && detectPlatform(profileURL)" class="platform-detected">
+    <mat-icon>check_circle</mat-icon>
+    <span>
+      Piattaforma rilevata:
+      <strong>{{ detectPlatform(profileURL) }}</strong>
+    </span>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div class="dialog-actions">
+    <button
+      mat-raised-button
+      class="cancel-button"
+      (click)="cancel()"
+      [disabled]="isLoading"
+    >
+      Annulla
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="confirm-button"
+      (click)="confirm()"
+      [disabled]="isLoading || !profileURL"
+    >
+      <mat-icon>check</mat-icon>
+      <span *ngIf="!isLoading">Conferma</span>
+      <span *ngIf="isLoading">In invio...</span>
+    </button>
+  </div>
+</div>

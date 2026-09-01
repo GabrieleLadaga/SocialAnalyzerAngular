@@ -1,0 +1,101 @@
+<div class="dashboard-wrapper">
+  <header class="dashboard-header">
+    <div class="header-left">
+      <div class="logo-placeholder">
+        <img src="assets/logo.png" alt="Social Analyzer Logo" class="logo" />
+      </div>
+      <h1>Social Analyzer</h1>
+    </div>
+    <div class="header-right">
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="columns-container">
+      <div class="column">
+        <div class="column-header">
+          <mat-icon class="column-icon">schedule</mat-icon>
+          <h2>Profili da analizzare</h2>
+          <span class="badge">{{ pendingJobs.length }}</span>
+        </div>
+        <div class="column-content" #pendingScroll>
+          <div *ngIf="pendingJobs.length === 0" class="empty-state">
+            <mat-icon>hourglass_empty</mat-icon>
+            <p>Nessun profilo in attesa</p>
+          </div>
+
+          <div
+            *ngFor="let job of pendingJobs"
+            class="job-card pending"
+            (click)="viewPendingJob(job)"
+          >
+            <div class="job-card-header">
+              <mat-icon class="status-icon" [color]="getStatusColor(job.status)">
+                {{ getStatusIcon(job.status) }}
+              </mat-icon>
+              <span class="job-url">{{ job.profileURL | slice:0:30 }}{{ job.profileURL.length > 30 ? '...' : '' }}</span>
+            </div>
+            <div class="job-card-body">
+              <span class="job-date">{{ job.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+              <mat-chip [color]="getStatusColor(job.status)" selected size="small">
+                {{ getStatusLabel(job.status) }}
+              </mat-chip>
+            </div>
+            <div class="job-card-footer">
+              <span class="click-hint">Clicca per dettagli</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="column-header">
+          <mat-icon class="column-icon">track_changes</mat-icon>
+          <h2>Profili analizzati</h2>
+          <span class="badge">{{ completedJobs.length }}</span>
+        </div>
+        <div class="column-content" #completedScroll>
+          <div *ngIf="completedJobs.length === 0" class="empty-state">
+            <mat-icon>search</mat-icon>
+            <p>Nessuna analisi completata</p>
+          </div>
+
+          <div
+            *ngFor="let job of completedJobs"
+            class="job-card completed"
+            (click)="viewCompletedJob(job)"
+          >
+            <div class="job-card-header">
+              <mat-icon class="status-icon" [color]="getStatusColor(job.status)">
+                {{ getStatusIcon(job.status) }}
+              </mat-icon>
+              <span class="job-url">{{ job.profileURL | slice:0:30 }}{{ job.profileURL.length > 30 ? '...' : '' }}</span>
+            </div>
+            <div class="job-card-body">
+              <span class="job-date">{{ job.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+              <mat-chip *ngIf="job.riskLevel" [color]="getRiskColor(job.riskLevel)" selected size="small">
+                {{ job.riskLevel }}
+              </mat-chip>
+            </div>
+            <div class="job-card-footer">
+              <span class="click-hint">Clicca per report</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="fab-container">
+    <button
+      mat-raised-button
+      class="fab-button"
+      (click)="openNewAnalysis()" >
+      <mat-icon>add</mat-icon>
+      <span class="fab-text">Nuova Analisi</span>
+    </button>
+  </div>
+</div>

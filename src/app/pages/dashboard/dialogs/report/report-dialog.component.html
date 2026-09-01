@@ -1,0 +1,133 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <mat-icon class="header-icon">description</mat-icon>
+    <h2>Report analisi #{{ job.jobID }} completato</h2>
+  </div>
+
+  <div class="report-body">
+
+    <div class="form-field">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>URL del profilo</mat-label>
+        <input matInput [value]="job.profileURL" readonly placeholder="URL non disponibile" />
+        <mat-icon matPrefix>link</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field" *ngIf="job.createdAt">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Data di creazione</mat-label>
+        <input matInput [value]="job.createdAt | date:'dd/MM/yyyy HH:mm'" readonly />
+        <mat-icon matPrefix>calendar_today</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Stato</mat-label>
+        <input matInput [value]="getStatusLabel(job.status)" readonly />
+        <mat-icon matPrefix [color]="getStatusColor(job.status)">
+          {{ getStatusIcon(job.status) }}
+        </mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="parsedReport" class="report-sections">
+
+      <div class="risk-section" [class.risk-low]="parsedReport.risk_level === 'BASSO'"
+           [class.risk-medium]="parsedReport.risk_level === 'MEDIO'"
+           [class.risk-high]="parsedReport.risk_level === 'ALTO'">
+        <mat-icon class="risk-icon">{{ getRiskIcon(parsedReport.risk_level) }}</mat-icon>
+        <span class="risk-label">Livello di Rischio:</span>
+        <span class="risk-value">{{ parsedReport.risk_level }}</span>
+      </div>
+
+      <div class="form-field report-field">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Riepilogo profilo</mat-label>
+          <textarea
+            matInput
+            readonly
+            [value]="parsedReport.summary"
+            rows="2"
+            class="report-textarea"
+          ></textarea>
+          <mat-icon matPrefix>description</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field report-field">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Pattern ricorrenti</mat-label>
+          <textarea
+            matInput
+            readonly
+            [value]="parsedReport.patterns"
+            rows="2"
+            class="report-textarea"
+          ></textarea>
+          <mat-icon matPrefix>pattern</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field report-field">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Valutazione del Social Engineering Risk</mat-label>
+          <textarea
+            matInput
+            readonly
+            [value]="parsedReport.social_engineering_risk"
+            rows="2"
+            class="report-textarea"
+          ></textarea>
+          <mat-icon matPrefix>warning</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field report-field">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Raccomandazione</mat-label>
+          <textarea
+            matInput
+            readonly
+            [value]="parsedReport.recommendations"
+            rows="2"
+            class="report-textarea"
+          ></textarea>
+          <mat-icon matPrefix>lightbulb</mat-icon>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+    <div *ngIf="!parsedReport" class="form-field report-field">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Report (dati grezzi)</mat-label>
+        <textarea
+          matInput
+          readonly
+          [value]="getFormattedReport(job.reportSummary) || 'Report non disponibile.'"
+          rows="6"
+          class="report-textarea"
+        ></textarea>
+        <mat-icon matPrefix>info</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field" *ngIf="job.errorMessage">
+      <mat-form-field appearance="outline" class="full-width error-field">
+        <mat-label>Errore</mat-label>
+        <input matInput [value]="job.errorMessage" readonly />
+        <mat-icon matPrefix color="warn">error</mat-icon>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="dialog-actions">
+    <button mat-raised-button class="close-button" (click)="close()">
+      <mat-icon>close</mat-icon>
+      Chiudi
+    </button>
+  </div>
+</div>
